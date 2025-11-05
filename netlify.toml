@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# These variables are intentionally included in the client bundle
+# Supabase anon key and URL are safe to be public (RLS protects the data)
+# Groq API key is also client-side
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "VITE_SUPABASE_URL,VITE_SUPABASE_ANON_KEY,VITE_GROQ_API_KEY"
+
