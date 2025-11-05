@@ -10,4 +10,6 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Uncomment base if deploying to GitHub Pages
+  // base: '/8-pet/',
 })
