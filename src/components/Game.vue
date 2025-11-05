@@ -59,7 +59,6 @@ let updateTimer: number | null = null
 
 const minutesLived = computed(() => Math.floor(elapsedSeconds.value / 60))
 const remainingSeconds = computed(() => Math.max(0, GAME_DURATION / 1000 - elapsedSeconds.value))
-const remainingMinutes = computed(() => Math.ceil(remainingSeconds.value / 60))
 
 const petAge = computed((): PetAge => {
   const minutes = minutesLived.value

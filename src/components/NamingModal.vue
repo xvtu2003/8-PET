@@ -31,10 +31,10 @@ function catChoosesColor() {
   setTimeout(() => {
     // Cat randomly picks a color based on its "personality"
     const randomIndex = Math.floor(Math.random() * colorPresets.length)
-    const chosenColor = colorPresets[randomIndex]
-    selectedColor.value = chosenColor.hex
+    const chosenColor = colorPresets[randomIndex] || colorPresets[0]
+    selectedColor.value = chosenColor?.hex || '#ffffff'
 
-    catChoice.value = `*purr* I choose ${chosenColor.name}! ${chosenColor.personality} feels right... *beep*`
+    catChoice.value = `*purr* I choose ${chosenColor?.name || 'White'}! ${chosenColor?.personality || 'Pure'} feels right... *beep*`
 
     setTimeout(() => {
       isChoosingColor.value = false
