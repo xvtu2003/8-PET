@@ -15,7 +15,7 @@ const emit = defineEmits<{ logout: [] }>()
 const memoryCount = ref(0)
 const recentMemories = ref<Memory[]>([])
 const isLoading = ref(true)
-const showAllMemories = ref(false)
+// Removed unused showAllMemories variable
 
 const timeLived = computed(() => {
   const birth = new Date(props.pet.birth_time).getTime()

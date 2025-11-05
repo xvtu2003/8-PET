@@ -72,14 +72,7 @@ const petAge = computed((): PetAge => {
 const isGoodbyePhase = computed(() => minutesLived.value >= 7)
 const isGameOver = computed(() => remainingSeconds.value <= 0)
 
-const ageLabel = computed(() => {
-  switch (petAge.value) {
-    case 'baby': return 'BABY'
-    case 'young': return 'YOUNG'
-    case 'adult': return 'ADULT'
-    case 'elderly': return 'ELDER'
-  }
-})
+// Removed unused ageLabel computed property
 
 function updateMood() {
   const timeSinceInteraction = (Date.now() - lastInteractionTime.value) / 1000 / 60 // in minutes

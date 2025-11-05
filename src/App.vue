@@ -15,13 +15,7 @@ const isAuthenticated = ref(false)
 const showMemorial = ref(false)
 const isLoading = ref(true)
 
-function generateUserId() {
-  const stored = localStorage.getItem('8pet-user-id')
-  if (stored) return stored
-  const id = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
-  localStorage.setItem('8pet-user-id', id)
-  return id
-}
+// Removed unused generateUserId function
 
 async function startGame(petName: string, color: string, accessories: string[]) {
   try {

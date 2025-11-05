@@ -6,8 +6,8 @@ export class AudioManager {
     try {
       const AudioContextClass = (window as any).AudioContext || (window as any).webkitAudioContext
       this.audioContext = new AudioContextClass()
-      this.masterGain = this.audioContext.createGain()
-      this.masterGain.connect(this.audioContext.destination)
+      this.masterGain = this.audioContext!.createGain()
+      this.masterGain.connect(this.audioContext!.destination)
       this.masterGain.gain.value = 0.3 // Default volume 30%
     } catch (error) {
       console.warn('Web Audio API not supported:', error)
@@ -53,6 +53,11 @@ export class AudioManager {
 
     osc.start(this.audioContext.currentTime)
     osc.stop(this.audioContext.currentTime + 0.1)
+  }
+
+  // Boop sound - alternative interaction sound
+  playBoop() {
+    this.playBeep() // Alias to playBeep
   }
 
   // Sad/dying sound - descending glitch

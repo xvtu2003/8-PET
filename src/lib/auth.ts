@@ -3,6 +3,7 @@ import { supabase } from './supabase'
 export interface AuthUser {
   id: string
   email: string
+  username?: string
   created_at: string
 }
 
@@ -84,7 +85,7 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
 
 export async function onAuthStateChange(callback: (user: AuthUser | null) => void) {
   try {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       if (session?.user) {
         callback({
           id: session.user.id,

@@ -169,10 +169,10 @@ function showRandomThought() {
 
   // Combine mood-based and age-based thoughts
   const moodBasedThoughts = moodThoughts[props.mood] || []
-  const ageBasedThoughts = catThoughts[props.age]
+  const ageBasedThoughts = catThoughts[props.age] || []
   const allThoughts = [...moodBasedThoughts, ...ageBasedThoughts]
   
-  const randomThought = allThoughts[Math.floor(Math.random() * allThoughts.length)]
+  const randomThought = allThoughts[Math.floor(Math.random() * allThoughts.length)] || 'purr...'
 
   currentThought.value = randomThought
   showThought.value = true
@@ -187,8 +187,8 @@ function showRandomThought() {
 }
 
 function showFeedThought() {
-  const thoughts = feedThoughts[props.age]
-  const randomThought = thoughts[Math.floor(Math.random() * thoughts.length)]
+  const thoughts = feedThoughts[props.age] || ['yum!']
+  const randomThought = thoughts[Math.floor(Math.random() * thoughts.length)] || 'yum!'
   
   currentThought.value = randomThought
   showThought.value = true
