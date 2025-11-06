@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { supabase } from '../lib/supabase'
 import { signOut } from '../lib/auth'
 import { getPetResponse } from '../lib/groq'
@@ -206,18 +206,16 @@ function playPetSound(type: string = 'meow') {
   }
 }
 
-async function handleCustomizationChange(color: string, accessories: string[]) {
+async function handleCustomizationChange(color: string) {
   try {
     await supabase
       .from('pets')
       .update({
-        color: color,
-        accessories: accessories
+        color: color
       })
       .eq('id', petState.value.id)
 
     petState.value.color = color
-    petState.value.accessories = accessories
   } catch (error) {
     console.error('Failed to update pet:', error)
   }
@@ -310,6 +308,14 @@ onMounted(async () => {
   
   startGameTimer()
   loadMemories()
+  
+  // Play age-appropriate music
+  audioManager.playAgeMusic(petAge.value)
+})
+
+// Watch for age changes and update music
+watch(petAge, (newAge) => {
+  audioManager.playAgeMusic(newAge)
 })
 
 async function loadMemories() {
@@ -342,6 +348,7 @@ function formatTimeRemaining(seconds: number): string {
 onBeforeUnmount(() => {
   if (gameTimer) clearInterval(gameTimer)
   if (updateTimer) clearInterval(updateTimer)
+  audioManager.stopMusic()
 })
 </script>
 
@@ -519,6 +526,7 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  overflow: visible;
 }
 
 .game-over-overlay {

@@ -9,18 +9,10 @@ interface Props {
 const props = defineProps<Props>()
 
 const emit = defineEmits<{
-  update: [color: string, accessories: string[]]
+  update: [color: string]
 }>()
 
 const selectedColor = ref(props.pet.color)
-const selectedAccessories = ref<string[]>([...props.pet.accessories])
-
-const availableAccessories = [
-  { id: 'bow', label: '🎀 Pink Bow' },
-  { id: 'hat', label: '🎩 Top Hat' },
-  { id: 'collar', label: '⌛ Collar' },
-  { id: 'glasses', label: '👓 Glasses' }
-]
 
 const colorPresets = [
   { name: 'White', hex: '#FFFFFF' },
@@ -31,27 +23,13 @@ const colorPresets = [
   { name: 'Black', hex: '#000000' }
 ]
 
-function toggleAccessory(id: string) {
-  const index = selectedAccessories.value.indexOf(id)
-  if (index > -1) {
-    selectedAccessories.value.splice(index, 1)
-  } else {
-    selectedAccessories.value.push(id)
-  }
-  saveChanges()
-}
-
-function isAccessorySelected(id: string) {
-  return selectedAccessories.value.includes(id)
-}
-
 function updateColor(color: string) {
   selectedColor.value = color
   saveChanges()
 }
 
 function saveChanges() {
-  emit('update', selectedColor.value, selectedAccessories.value)
+  emit('update', selectedColor.value)
 }
 </script>
 
@@ -84,36 +62,11 @@ function saveChanges() {
       </div>
     </div>
 
-    <!-- Accessories -->
-    <div class="section">
-      <label>Accessories</label>
-      <div class="accessories-grid">
-        <button
-          v-for="accessory in availableAccessories"
-          :key="accessory.id"
-          @click="toggleAccessory(accessory.id)"
-          :class="{ selected: isAccessorySelected(accessory.id) }"
-          class="8bit-button 8bit-button-sm accessory-button"
-        >
-          {{ accessory.label }}
-        </button>
-      </div>
-    </div>
-
     <!-- Preview -->
     <div class="preview">
       <p>Preview:</p>
       <div class="pet-preview" :style="{ color: selectedColor }">
         CAT
-      </div>
-      <div v-if="selectedAccessories.length > 0" class="accessories-list">
-        <div
-          v-for="acc in selectedAccessories"
-          :key="acc"
-          class="accessory-tag"
-        >
-          {{ availableAccessories.find(a => a.id === acc)?.label }}
-        </div>
       </div>
     </div>
   </div>

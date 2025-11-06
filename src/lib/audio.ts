@@ -103,6 +103,98 @@ export class AudioManager {
   }
 
 
+  // Background music oscillators
+  private musicOscillators: OscillatorNode[] = []
+  private musicGain: GainNode | null = null
+  private currentMusicAge: string | null = null
+
+  // Play age-appropriate background music
+  playAgeMusic(age: 'baby' | 'young' | 'adult' | 'elderly') {
+    // Don't restart if same age music is already playing
+    if (this.currentMusicAge === age && this.musicOscillators.length > 0) {
+      return
+    }
+
+    this.stopMusic()
+    
+    if (!this.audioContext || !this.masterGain) return
+
+    this.currentMusicAge = age
+    this.musicGain = this.audioContext.createGain()
+    this.musicGain.gain.value = 0.05 // Very soft background music
+    this.musicGain.connect(this.masterGain)
+
+    const now = this.audioContext.currentTime
+
+    // Define melodies for each age (frequencies in Hz)
+    const melodies = {
+      baby: [523.25, 587.33, 659.25, 698.46], // C5, D5, E5, F5 - playful
+      young: [659.25, 783.99, 880.00, 987.77], // E5, G5, A5, B5 - energetic
+      adult: [392.00, 440.00, 493.88, 523.25], // G4, A4, B4, C5 - balanced
+      elderly: [261.63, 293.66, 329.63, 349.23]  // C4, D4, E4, F4 - gentle
+    }
+
+    const melody = melodies[age]
+    const noteDuration = age === 'elderly' ? 1.2 : age === 'baby' ? 0.6 : 0.8
+
+    // Create a looping melody
+    const playMelody = (startTime: number) => {
+      melody.forEach((freq, index) => {
+        const osc = this.audioContext!.createOscillator()
+        const noteGain = this.audioContext!.createGain()
+
+        osc.type = 'sine'
+        osc.frequency.setValueAtTime(freq, startTime + index * noteDuration)
+
+        // Fade in and out for each note
+        noteGain.gain.setValueAtTime(0, startTime + index * noteDuration)
+        noteGain.gain.linearRampToValueAtTime(1, startTime + index * noteDuration + 0.1)
+        noteGain.gain.linearRampToValueAtTime(0, startTime + (index + 1) * noteDuration - 0.1)
+
+        osc.connect(noteGain)
+        noteGain.connect(this.musicGain!)
+
+        osc.start(startTime + index * noteDuration)
+        osc.stop(startTime + (index + 1) * noteDuration)
+
+        this.musicOscillators.push(osc)
+      })
+    }
+
+    // Play initial melody
+    playMelody(now)
+
+    // Schedule recurring melodies
+    const melodyLength = melody.length * noteDuration
+    let currentTime = now + melodyLength
+
+    // Schedule next 10 loops (will be stopped when age changes or game ends)
+    for (let i = 0; i < 10; i++) {
+      playMelody(currentTime)
+      currentTime += melodyLength
+    }
+  }
+
+  // Stop background music
+  stopMusic() {
+    this.musicOscillators.forEach(osc => {
+      try {
+        osc.stop()
+        osc.disconnect()
+      } catch (e) {
+        // Oscillator may already be stopped
+      }
+    })
+    this.musicOscillators = []
+    
+    if (this.musicGain) {
+      this.musicGain.disconnect()
+      this.musicGain = null
+    }
+    
+    this.currentMusicAge = null
+  }
+
   // Set master volume (0-1)
   setVolume(value: number) {
     if (this.masterGain) {
