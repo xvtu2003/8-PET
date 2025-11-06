@@ -124,15 +124,18 @@ export default {
   flex-direction: column;
   background: var(--black);
   border-left: var(--8bit-border-thick) solid var(--white);
-  overflow: hidden;
+  max-height: 100%;
+  min-height: 0;
 }
 
 .chat-container {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 20px;
   display: flex;
   flex-direction: column-reverse;
+  min-height: 0;
 }
 
 .chat-container::-webkit-scrollbar {
@@ -267,7 +270,8 @@ export default {
   padding: 15px;
   border-top: var(--8bit-border-thin) solid var(--white);
   background: var(--black);
-  position: relative;
+  position: sticky;
+  bottom: 0;
   z-index: 100;
   flex-shrink: 0;
 }
@@ -321,12 +325,18 @@ export default {
 @media (max-width: 768px) {
   .chat-interface {
     min-height: 50vh;
-    max-height: none;
+    max-height: 50vh;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     border-left: none;
     border-top: var(--8bit-border-thick) solid var(--white);
+  }
+  
+  .chat-container {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
   }
 
   .chat-header {
