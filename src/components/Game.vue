@@ -609,11 +609,15 @@ onBeforeUnmount(() => {
 
   .main-content {
     flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .pet-section {
     flex: none;
-    min-height: 50vh;
+    height: auto;
+    min-height: 40vh;
+    max-height: 50vh;
     padding: 10px;
   }
 }

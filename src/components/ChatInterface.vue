@@ -304,7 +304,18 @@ export default {
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .chat-interface {
-    min-height: 45vh;
+    min-height: 50vh;
+    max-height: none;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    border-left: none;
+    border-top: var(--8bit-border-thick) solid var(--white);
+  }
+
+  .chat-header {
+    flex-shrink: 0;
+    padding: 12px;
   }
 
   .chat-header h3 {
@@ -313,6 +324,8 @@ export default {
 
   .messages-container {
     padding: 10px;
+    flex: 1;
+    min-height: 200px;
   }
 
   .message-content {
@@ -335,6 +348,7 @@ export default {
 
   .chat-input-container {
     padding: 10px;
+    flex-shrink: 0;
   }
 
   .chat-input {
@@ -349,6 +363,7 @@ export default {
 
   .message-input {
     height: 40px;
+    font-size: 0.85em;
   }
 
   .send-btn {
