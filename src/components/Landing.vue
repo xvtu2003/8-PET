@@ -176,4 +176,61 @@ const emit = defineEmits<{
   margin-top: 40px;
   letter-spacing: var(--8bit-letter-spacing);
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .landing {
+    padding: 20px;
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 2.5em;
+  }
+
+  .subtitle {
+    font-size: 1em;
+  }
+
+  .warning {
+    font-size: 0.75em;
+    padding: 8px;
+  }
+
+  .cat {
+    font-size: 2em;
+  }
+
+  .pixel-cat {
+    font-size: 0.5em;
+  }
+
+  .start-button {
+    font-size: 1em;
+    padding: 12px 24px;
+  }
+
+  .instruction {
+    font-size: 0.95em;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2em;
+  }
+
+  .cat {
+    font-size: 1.5em;
+  }
+
+  .pixel-cat {
+    font-size: 0.4em;
+  }
+}
 </style>

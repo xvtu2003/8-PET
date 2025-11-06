@@ -560,4 +560,61 @@ onBeforeUnmount(() => {
 .restart-btn {
   margin-top: 20px;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .title-section {
+    text-align: center;
+    width: 100%;
+  }
+
+  .title-section h1 {
+    font-size: 1.3em;
+  }
+
+  .age-display {
+    font-size: 0.75em;
+  }
+
+  .owner-name {
+    font-size: 0.65em;
+  }
+
+  .timer-section {
+    margin: 0;
+    width: 100%;
+  }
+
+  .time-remaining,
+  .goodbye-text {
+    font-size: 1em;
+  }
+
+  .header-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .customize-btn,
+  .logout-btn {
+    font-size: 0.8em;
+    padding: 8px 16px;
+  }
+
+  .main-content {
+    flex-direction: column;
+  }
+
+  .pet-section {
+    flex: none;
+    min-height: 50vh;
+    padding: 10px;
+  }
+}
 </style>

@@ -544,5 +544,59 @@ async function handleLogout() {
   .sub-message {
     font-size: 0.75em;
   }
+
+  .memorial-container {
+    padding: 10px;
+    gap: 20px;
+  }
+
+  .memorial-header {
+    padding-top: 40px;
+  }
+
+  .title {
+    font-size: 1.5em;
+  }
+
+  .memorial-ascii {
+    font-size: 1.2em;
+  }
+
+  .pet-info h2 {
+    font-size: 1.3em;
+  }
+
+  .pet-name {
+    font-size: 1.2em;
+  }
+
+  .lifetime {
+    font-size: 0.9em;
+  }
+
+  .shina-dedication h3 {
+    font-size: 1.1em;
+  }
+
+  .shina-photo img {
+    max-width: 200px;
+  }
+
+  .dedication-text {
+    font-size: 1em;
+  }
+
+  .dedication-message {
+    font-size: 0.8em;
+  }
+
+  .dedication-quote {
+    font-size: 0.85em;
+  }
+
+  .logout-btn-top {
+    font-size: 0.7em;
+    padding: 8px 12px;
+  }
 }
 </style>

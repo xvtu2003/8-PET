@@ -561,4 +561,52 @@ export default {
   width: 6px;
   height: 6px;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .pet-display {
+    gap: 15px;
+    width: 100%;
+  }
+
+  .pet-sprite {
+    font-size: 1.3em;
+    padding: 15px;
+  }
+
+  .pet-ascii {
+    font-size: 0.9em;
+    padding: 10px;
+    min-height: 100px;
+  }
+
+  .thought-bubble {
+    max-width: 200px;
+    font-size: 0.7em;
+    padding: 8px 12px;
+  }
+
+  .thought-bubble::before {
+    border-width: 8px;
+    border-left-width: 10px;
+    left: 35px;
+  }
+
+  .interaction-buttons {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .interaction-button,
+  .feed-button {
+    font-size: 0.7em;
+    padding: 8px 12px;
+    min-width: 70px;
+  }
+
+  .age-indicator {
+    font-size: 0.7em;
+    bottom: -25px;
+  }
+}
 </style>

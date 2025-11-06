@@ -300,4 +300,60 @@ export default {
   width: 100%;
   margin-top: 10px;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .chat-interface {
+    min-height: 45vh;
+  }
+
+  .chat-header h3 {
+    font-size: 0.9em;
+  }
+
+  .messages-container {
+    padding: 10px;
+  }
+
+  .message-content {
+    max-width: 85%;
+    padding: 10px 12px;
+    font-size: 0.85em;
+  }
+
+  .sender-label {
+    font-size: 0.7em;
+  }
+
+  .message-content p {
+    font-size: 0.9em;
+  }
+
+  .timestamp {
+    font-size: 0.65em;
+  }
+
+  .chat-input-container {
+    padding: 10px;
+  }
+
+  .chat-input {
+    font-size: 0.8em;
+    padding: 10px 12px;
+  }
+
+  .send-button {
+    font-size: 0.7em;
+    padding: 10px 14px;
+  }
+
+  .message-input {
+    height: 40px;
+  }
+
+  .send-btn {
+    font-size: 1em;
+    padding: 8px 12px;
+  }
+}
 </style>
