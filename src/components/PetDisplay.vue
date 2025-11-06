@@ -581,15 +581,20 @@ export default {
   }
 
   .thought-bubble {
+    top: -70px;
     max-width: 200px;
     font-size: 0.7em;
     padding: 8px 12px;
+    position: absolute;
+    z-index: 100;
   }
 
-  .thought-bubble::before {
-    border-width: 8px;
-    border-left-width: 10px;
-    left: 35px;
+  .thought-content {
+    font-size: 0.75em;
+    padding: 6px 10px;
+    white-space: normal;
+    max-width: 180px;
+    word-wrap: break-word;
   }
 
   .interaction-buttons {

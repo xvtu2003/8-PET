@@ -619,6 +619,8 @@ onBeforeUnmount(() => {
     min-height: 40vh;
     max-height: 50vh;
     padding: 10px;
+    padding-top: 80px;
+    overflow: visible;
   }
 }
 </style>
