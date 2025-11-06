@@ -267,6 +267,9 @@ export default {
   padding: 15px;
   border-top: var(--8bit-border-thin) solid var(--white);
   background: var(--black);
+  position: relative;
+  z-index: 100;
+  flex-shrink: 0;
 }
 
 .goodbye-message {
@@ -290,10 +293,23 @@ export default {
   flex: 1;
   resize: none;
   height: 50px;
+  position: relative;
+  z-index: 10;
+  background: var(--white);
+  color: var(--black);
+}
+
+.message-input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .send-btn {
   font-size: 1.2em;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
 }
 
 .goodbye-btn {
