@@ -402,7 +402,7 @@ export default {
   padding: 20px;
   border: var(--8bit-border-thin) solid var(--white);
   box-shadow: var(--8bit-shadow-input);
-  background: var(--black);
+  background: rgba(255, 255, 255, 0.05);
   font-family: 'Courier New', monospace;
   text-align: center;
   font-size: 1.8em;
@@ -412,7 +412,8 @@ export default {
 
 .pet-body {
   font-weight: bold;
-  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.2);
 }
 
 .pet-ascii {
